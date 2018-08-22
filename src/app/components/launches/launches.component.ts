@@ -14,8 +14,6 @@ export class LaunchesComponent implements OnInit {
   }
 
   loadLaunches() {
-
-
   }
 
 }

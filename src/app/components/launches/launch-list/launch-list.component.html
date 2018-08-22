@@ -1,0 +1,9 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-launch-item 
+      *ngFor="let launch of launches; let i = index"
+      [launch]="launchElement"
+      [index]="i"></app-launch-item>
+  </div>
+</div>

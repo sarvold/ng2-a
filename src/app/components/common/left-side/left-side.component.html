@@ -1,0 +1,26 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="treeview ng-scope">
+            <a id="aplicaciones" style="cursor:pointer">
+                <i class="fa fa-list-ul"></i> <span>NG-Assignment</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                             style="cursor:pointer"class="ng-binding"><i class="fa fa-external-link"></i>Home
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/launches" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                             style="cursor:pointer" class="ng-binding"><i class="fa fa-external-link"></i>Launches
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+  </section>
+</aside>

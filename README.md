@@ -1,9 +1,13 @@
-Tutoriales Angular 2+
+Angular 2+ - basic assignment
 ---
 
 ### TOC
 + [Actualizar Angular Cli](update-angular-cli.md)
 + [Integrar Admin LTE en Angular 2+](use-adminlte-angular-2plus.md)
+
+--------------
+
+--- This project uses adminLTE ---
 
 **THE 2.4.3 VERSION IS UNDER DEVELOPMENT, CHECK [V2.4.3 BRANCH](https://github.com/csotomon/Angular2-AdminLTE/tree/v2.4.3)**
 

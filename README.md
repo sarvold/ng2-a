@@ -1,4 +1,5 @@
-Angular 2+ - basic assignment
+Angular 2+
+Assignment
 ---
 
 ### TOC

@@ -43,15 +43,15 @@ export class DataStorageService {
 
   fetchLaunches2() {
     return this.httpClient.get<Launch[]>(this.launchesUrl)
-      .map(
-        (launches) => {
+      // .map(
+      //   (launches) => {
           // if needed, check that relevant json fields are present
           // for(let launch of launches) {
           //   console.log(launch);
           // }
-          return launches;
-        }
-      )
+      //     return launches;
+      //   }
+      // )
       // Subscribe on the component itself
       ;
      

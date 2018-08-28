@@ -3,10 +3,14 @@ import { Launch } from '../models/launch.model';
 import { DataStorageService } from './data-storage.service'
 import 'rxjs';
 import 'rxjs/add/operator/map';
+import { Subject } from 'rxjs';
+import { Rocket } from '../models/rocket.model';
+import { Links } from '../models/links.model';
+import { LaunchSite } from '../models/launch-site.model';
 
 @Injectable()
 export class LaunchesService {
-
+  launcheChanged = new Subject<Launch[]>();
   private launches: Launch[] = [];
   launchSelected = new EventEmitter<Launch>();
 
@@ -20,9 +24,11 @@ export class LaunchesService {
         new Launch(launch.flight_number,
           launch.mission_name,
           launch.launch_year,
-          launch.rocket,
-          launch.links,
-          launch.launch_site)
+          new Rocket(launch.rocket.rocket_name, launch.rocket.rocket_type),
+          new Links(launch.links.mission_patch),
+          new LaunchSite(launch.launch_site.site_id, 
+                        launch.launch_site.site_name, 
+                        launch.launch_site.site_name_long)
       );
       // console.log(launch);
     }

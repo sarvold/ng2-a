@@ -11,17 +11,7 @@ import { LaunchesService } from '../../../shared/services/launches.service';
   styleUrls: ['./launch-list.component.css']
 })
 export class LaunchListComponent implements OnInit {
-  launches: Launch[] = [
-    // this was for testing only
-    // new Launch('1111', 'aaaapossible', '1996', 'Rock n Roll', 'Standard type', 
-    //   'https://images2.imgbox.com/40/e3/GypSkayF_o.png',
-    //   'Area 31'
-    // ),
-    // new Launch('2222', 'qqq impossible II', '1998', 'Rolling Stones', 'Spacial type', 
-    //   'https://images2.imgbox.com/be/e7/iNqsqVYM_o.png',
-    //   'Area 33'
-    // )
-  ];
+  launches: Launch[] = [];
 
   constructor(private router: Router,
               private launchService: LaunchesService) {
@@ -31,6 +21,11 @@ export class LaunchListComponent implements OnInit {
   ngOnInit() {
     // The below does not work since we need to subscribe to the launches before assigning them from the LaunchService.
     this.launchService.getApiLaunches()
+      .map(
+        (launches) => {
+          return launches;
+        }
+      )
       .subscribe(
         (launches: Launch[]) => {
           this.launchService.setLaunches(launches);

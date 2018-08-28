@@ -10,10 +10,10 @@ export class LaunchesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.loadLaunches();
+    // this.loadLaunches();
   }
 
-  loadLaunches() {
-  }
+  // loadLaunches() {
+  // }
 
 }

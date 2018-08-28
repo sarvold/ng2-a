@@ -1,9 +1,17 @@
-
 <div class="row">
   <div class="col-sm-12">
-    <app-launch-item 
-      *ngFor="let launch of launches; let i = index"
-      [launch]="launchElement"
-      [index]="i"></app-launch-item>
+    <ul class="list-group">
+        <a href="#"
+            class="list-group-item clearfix"
+            style="cursor: pointer;"
+            *ngFor="let launchElement of launches; let i = index"
+            (click)="loadDetails(i)">
+        <app-launch-item [launchItem]="launchElement" 
+              [index]="i" 
+              >
+              <!-- routerLink="/launch/{{id}}" -->
+        </app-launch-item>
+      </a>
+    </ul>
   </div>
 </div>

@@ -1,3 +1,11 @@
-<p>
-  launch-item works!
-</p>
+<div class="pull-left">
+  <h4 class="list-group-item-heading">
+    # {{ launch.flight_number }} -- {{ launch.mission_name || uppercase}}
+  </h4>
+  <p class="list-group-item-text">
+    Rocket {{ launch.rocket.rocket_name }} / {{ launch.rocket.rocket_type }} <br> ({{ launch.launch_year }}) <br>
+  </p>
+</div>
+<span class="pull-right">
+  <img [src]="launch.mission_patch" alt="# {{ launch.flight_number }} / {{ launch.rocket_name }}" class="img-responsive" style="max-height: 50px;">
+</span>

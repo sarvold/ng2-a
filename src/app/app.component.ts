@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStorageService } from './shared/services/data-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,15 @@ export class AppComponent {
   bodyClasses = 'skin-blue sidebar-mini';
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
-  constructor() { }
+  constructor(
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     // add the the body classes
     this.body.classList.add('skin-blue');
     this.body.classList.add('sidebar-mini');    
     this.body.setAttribute('style', 'background-color : #222d32');
+    this.dataStorageService.fetchLaunches();
   }
 
    ngOnDestroy() {

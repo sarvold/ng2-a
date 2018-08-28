@@ -12,8 +12,11 @@ import { LaunchesComponent } from './components/launches/launches.component';
 import { SuiModule }         from 'ng2-semantic-ui';
 import { DetailsComponent } from './components/details/details.component';
 import { LaunchListComponent } from './components/launches/launch-list/launch-list.component';
-import { LaunchDetailComponent } from './components/launches/launch-detail/launch-detail.component';
-import { LaunchItemComponent } from './components/launches/launch-list/launch-item/launch-item.component'; 
+import { LaunchItemComponent } from './components/launches/launch-list/launch-item/launch-item.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { DataStorageService } from './shared/services/data-storage.service';
+import { LaunchesService } from './shared/services/launches.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,15 +28,19 @@ import { LaunchItemComponent } from './components/launches/launch-list/launch-it
     LaunchesComponent,
     DetailsComponent,
     LaunchListComponent,
-    LaunchDetailComponent,
     LaunchItemComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SuiModule
+    SuiModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DataStorageService,
+    LaunchesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

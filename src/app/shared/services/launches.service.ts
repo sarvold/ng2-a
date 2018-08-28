@@ -10,7 +10,7 @@ import { LaunchSite } from '../models/launch-site.model';
 
 @Injectable()
 export class LaunchesService {
-  launcheChanged = new Subject<Launch[]>();
+  launchesChanged = new Subject<Launch[]>();
   private launches: Launch[] = [];
   launchSelected = new EventEmitter<Launch>();
 
@@ -26,35 +26,19 @@ export class LaunchesService {
           launch.launch_year,
           new Rocket(launch.rocket.rocket_name, launch.rocket.rocket_type),
           new Links(launch.links.mission_patch),
-          new LaunchSite(launch.launch_site.site_id, 
-                        launch.launch_site.site_name, 
-                        launch.launch_site.site_name_long)
-      );
-      // console.log(launch);
+          new LaunchSite(launch.launch_site.site_id,
+            launch.launch_site.site_name,
+            launch.launch_site.site_name_long)
+        )
+      )
     }
     // this.launches = launches;
     console.log(this.launches);
     console.log("Launches set.");
+    this.launchesChanged.next(this.launches.slice());
   }
 
   getLaunches() {
-    // this.dataStorage.fetchLaunches2()
-    // .map(
-    //   (response: Response) => {
-    //     const launches: Launch[] = response.json();
-    //     // if needed, check that relevant json fields are present
-    //     // for(let launch of launches) {
-    //     //   console.log(launch);
-    //     // }
-    //     return launches;
-    //   }
-    // )
-    // .subscribe(
-    //   (launches: Launch[]) => {
-    //     this.launches=launches;
-    //     console.log("Lista de Launches observada: " + this.launches);
-    //   }
-    // );
     return this.launches
       // .slice() in order to return a new array which is an exact copy of this one
       .slice();

@@ -5,12 +5,15 @@ import 'rxjs/add/operator/map';
 
 import { Launch } from '../models/launch.model';
 import { HttpClient } from '@angular/common/http';
+import { LaunchesService } from './launches.service';
 
+@Injectable()
 export class DataStorageService {
 
   launchesUrl: string = 'https://api.spacexdata.com/v2/launches';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private launchesService: LaunchesService) { }
 
   fetchLaunches() {
     console.log("Entering fetch Launches...");
@@ -32,13 +35,9 @@ export class DataStorageService {
       // })
       .subscribe(
         (launches: Launch[]) => {
-          // this.launchesService.setLaunches(launches);
+          this.launchesService.setLaunches(launches);
         }
-      )
-      ;
-
-
-    // this.launchesService.setLaunches(this.listaDePrueba);
+      );
   }
 
   fetchLaunches2() {

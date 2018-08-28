@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router }            from '@angular/router';
 import 'rxjs';
 
 import { Launch }            from '../../../shared/models/launch.model';
 import { LaunchesService } from '../../../shared/services/launches.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-launch-list',
   templateUrl: './launch-list.component.html',
   styleUrls: ['./launch-list.component.css']
 })
-export class LaunchListComponent implements OnInit {
+export class LaunchListComponent implements OnInit, OnDestroy {
   launches: Launch[] = [];
+  subscription: Subscription;
 
   constructor(private router: Router,
               private launchService: LaunchesService) {
@@ -19,19 +21,26 @@ export class LaunchListComponent implements OnInit {
               }
 
   ngOnInit() {
-    // The below does not work since we need to subscribe to the launches before assigning them from the LaunchService.
-    this.launchService.getApiLaunches()
-      .map(
-        (launches) => {
-          return launches;
-        }
-      )
+    this.subscription = this.launchService.launcheChanged
       .subscribe(
         (launches: Launch[]) => {
-          this.launchService.setLaunches(launches);
-          this.launches = this.launchService.getLaunches();
+          this.launches = launches;
         }
-      );
+      )
+    this.launches = this.launchService.getLaunches();
+    // The below does not work since we need to subscribe to the launches before assigning them from the LaunchService.
+    // this.launchService.getApiLaunches()
+    //   .map(
+    //     (launches) => {
+    //       return launches;
+    //     }
+    //   )
+    //   .subscribe(
+    //     (launches: Launch[]) => {
+    //       this.launchService.setLaunches(launches);
+    //       this.launches = this.launchService.getLaunches();
+    //     }
+    //   );
   }
 
   loadDetails(index: number) {
@@ -43,5 +52,9 @@ export class LaunchListComponent implements OnInit {
 
     // Now navigating programatically
     this.router.navigate(['/launches', launch.flight_number]);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

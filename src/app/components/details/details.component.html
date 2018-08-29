@@ -1,5 +1,10 @@
 <div class="row">
     <div class="col-sm-12">
+      <span class="pull-right">
+        <img [src]="selectedLaunch.links.mission_patch" 
+          alt="# {{ selectedLaunch.flight_number }} / {{ selectedLaunch.rocket_name }}" 
+          class="img-responsive" style="max-height: 100px;">
+      </span>
       <h3>
         Flight # {{ selectedLaunch.flight_number}} Details
       </h3>

@@ -21,6 +21,7 @@ export class DetailsComponent implements OnInit {
       (launch: Launch) => {
         alert('Accessing Details of Flight # ' + launch.flight_number)
         this.selectedLaunch = launch;
+        console.log(this.selectedLaunch);
       }
     );
     // Not using the route.snapshot since we are using a service for cross-component communication
@@ -38,7 +39,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnDestroy() {
     // Not strictly required unless using custom observables
-    this.paramSubscription.unsubscribe(); 
-    this.launchService.launchSelected.unsubscribe();
+    // this.paramSubscription.unsubscribe(); 
+    // this.launchService.launchSelected.unsubscribe();
   }
 }

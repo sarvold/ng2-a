@@ -1,6 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Launch } from '../models/launch.model';
-import { DataStorageService } from './data-storage.service'
 import 'rxjs';
 import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs';
@@ -8,15 +7,12 @@ import { Rocket } from '../models/rocket.model';
 import { Links } from '../models/links.model';
 import { LaunchSite } from '../models/launch-site.model';
 
-@Injectable()
 export class LaunchesService {
   launchesChanged = new Subject<Launch[]>();
   private launches: Launch[] = [];
   launchSelected = new EventEmitter<Launch>();
 
-  constructor(
-    private dataStorage: DataStorageService
-  ) { }
+  constructor() { }
 
   setLaunches(launches: Launch[]) {
     for (let launch of launches) {
@@ -53,7 +49,4 @@ export class LaunchesService {
     return launch;
   }
 
-  getApiLaunches() {
-    return this.dataStorage.fetchLaunches2();
-  }
 }

@@ -5,6 +5,7 @@ import 'rxjs';
 import { Launch }            from '../../../shared/models/launch.model';
 import { LaunchesService } from '../../../shared/services/launches.service';
 import { Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-launch-list',
@@ -16,12 +17,14 @@ export class LaunchListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private router: Router,
-              private launchService: LaunchesService) {
+              private launchService: LaunchesService,
+              private httpClient: HttpClient) {
                 console.log("Launch-list constructor...");
               }
 
   ngOnInit() {
-    this.subscription = this.launchService.launcheChanged
+    this.fetchData();
+    this.subscription = this.launchService.launchesChanged
       .subscribe(
         (launches: Launch[]) => {
           this.launches = launches;
@@ -52,6 +55,24 @@ export class LaunchListComponent implements OnInit, OnDestroy {
 
     // Now navigating programatically
     this.router.navigate(['/launches', launch.flight_number]);
+  }
+  
+  // To avoid error happenning with dataStorage, testing the call here...
+  launchesUrl: string = 'https://api.spacexdata.com/v2/launches';
+  fetchData() {
+    console.log("Entering fetchData()...");
+    // let headers1 = new Headers({'Content-Type': 'application/json'});
+    this.httpClient.get<Launch[]>(this.launchesUrl)
+      .map(
+        (launches) => {
+          return launches;
+        }
+      )
+      .subscribe(
+        (launches: Launch[]) => {
+          this.launchService.setLaunches(launches);
+        }
+      );
   }
 
   ngOnDestroy() {

@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-
 import 'rxjs';
 import 'rxjs/add/operator/map';
 
 import { Launch } from '../models/launch.model';
 import { HttpClient } from '@angular/common/http';
 import { LaunchesService } from './launches.service';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DataStorageService {
